@@ -1,0 +1,11 @@
+# Dados persistidos do Grafana (volume local, se houver)
+grafana-data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Variáveis de ambiente com segredos
+.env

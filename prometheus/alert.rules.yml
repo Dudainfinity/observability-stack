@@ -1,0 +1,22 @@
+groups:
+  - name: disponibilidade
+    rules:
+      # Dispara se a aplicação ficar sem responder por mais de 30 segundos.
+      - alert: AppForaDoAr
+        expr: up{job="app"} == 0
+        for: 30s
+        labels:
+          severity: critica
+        annotations:
+          summary: "Aplicacao fora do ar"
+          description: "O servico '{{ $labels.job }}' esta sem responder ha mais de 30 segundos."
+
+      # Dispara se a taxa de erros 5xx ficar alta nos ultimos 2 minutos.
+      - alert: TaxaDeErroAlta
+        expr: rate(app_requests_total{http_status="500"}[2m]) > 0.2
+        for: 1m
+        labels:
+          severity: aviso
+        annotations:
+          summary: "Taxa de erros 5xx elevada"
+          description: "A aplicacao esta retornando muitos erros 500."

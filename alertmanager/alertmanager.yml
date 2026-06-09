@@ -1,0 +1,17 @@
+route:
+  receiver: "default"
+  group_wait: 10s
+  group_interval: 1m
+  repeat_interval: 1h
+
+receivers:
+  - name: "default"
+    # Para receber os alertas em um canal real (Slack, Discord, e-mail, etc.),
+    # descomente e configure um dos blocos abaixo:
+    #
+    # webhook_configs:
+    #   - url: "https://exemplo.com/seu-webhook"
+    #
+    # slack_configs:
+    #   - api_url: "https://hooks.slack.com/services/SEU/WEBHOOK/AQUI"
+    #     channel: "#alertas"

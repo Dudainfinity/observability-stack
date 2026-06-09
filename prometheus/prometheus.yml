@@ -1,0 +1,23 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Envia os alertas disparados para o Alertmanager.
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["alertmanager:9093"]
+
+# Arquivo com as regras de alerta.
+rule_files:
+  - "alert.rules.yml"
+
+# O que o Prometheus coleta (scrape).
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "app"
+    static_configs:
+      - targets: ["app:8000"]
